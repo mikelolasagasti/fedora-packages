@@ -1,6 +1,6 @@
 Name:    postgresqltuner
 Version: 1.0.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Simple script to analyze PostgreSQL database configuration and tuning
 
 License: GPLv3
@@ -11,7 +11,7 @@ BuildArch: noarch
 
 Requires: perl-DBI
 Requires: perl-DBD-Pg
-Requires: perl-Term-ANSIColor
+Requires: perl(Term::ANSIColor)
 
 %description
 postgresqltuner is a simple script to analyze your PostgreSQL database. It is 
