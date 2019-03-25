@@ -1,6 +1,6 @@
 Name:    postgresqltuner
 Version: 1.0.1
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: Simple script to analyze PostgreSQL database configuration and tuning
 
 License: GPLv3
@@ -31,5 +31,9 @@ cp -a postgresqltuner.pl %{buildroot}%{_bindir}/postgresqltuner
 %license LICENSE.txt
 
 %changelog
+* Mon Mar 25 2019 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 1.0.1-3
+- Fix requirements
+- Extend changelog
+
 * Fri Mar 22 2019 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 1.0.1-1
 - Initial version of the package
