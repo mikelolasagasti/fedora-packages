@@ -2,7 +2,7 @@
 Name=KeeWeb
 GenericName=Password Manager
 Exec=/opt/KeeWeb-1.8.0/KeeWeb
-Icon=/opt/KeeWeb-1.8.0/resources/app/icon.png
+Icon=/opt/KeeWeb-1.8.0/128x128.png
 Terminal=false
 Type=Application
 Categories=Utility;
