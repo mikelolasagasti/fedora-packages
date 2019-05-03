@@ -1,7 +1,7 @@
 %define __requires_exclude libffmpeg.so
 
 Name:    KeeWeb
-Version: 1.8.1
+Version: 1.8.2
 Release: 1%{?dist}
 Summary: Free cross-platform password manager compatible with KeePass 
 URL:     https://github.com/keeweb/keeweb
@@ -29,6 +29,9 @@ install -m 0644 -D %{SOURCE1} %{buildroot}%{_datadir}/applications/KeeWeb.deskto
 %{_datadir}/applications/KeeWeb.desktop
 
 %changelog
+* Fri May 3 2019 Mikel Olasagasti <mikel@olasagsati.info> - 1.8.2-1
+- Version bump
+- Fix desktop file
 * Sat Apr 6 2019 Mikel Olasagasti <mikel@olasagsati.info> - 1.8.1-1
 - Version bump
 * Sun Mar 31 2019 Mikel Olasagasti <mikel@olasagasti.info> - 1.8.0-2
