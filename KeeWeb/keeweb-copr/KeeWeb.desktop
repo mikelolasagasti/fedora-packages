@@ -1,8 +1,8 @@
 [Desktop Entry]
 Name=KeeWeb
 GenericName=Password Manager
-Exec=/opt/KeeWeb-1.9.1/KeeWeb
-Icon=/opt/KeeWeb-1.9.1/128x128.png
+Exec=/opt/KeeWeb/KeeWeb
+Icon=/opt/KeeWeb/128x128.png
 Terminal=false
 Type=Application
 Categories=Utility;

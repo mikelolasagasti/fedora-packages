@@ -2,7 +2,7 @@
 
 Name:    KeeWeb
 Version: 1.9.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Free cross-platform password manager compatible with KeePass 
 URL:     https://github.com/keeweb/keeweb
 License: MIT
@@ -20,16 +20,18 @@ Free cross-platform password manager compatible with KeePass
 
 %install
 mkdir -p %{buildroot}/opt
-cp -r ../KeeWeb-%{version} %{buildroot}/opt/KeeWeb-%{version}
+cp -r ../KeeWeb-%{version} %{buildroot}/opt/KeeWeb
 install -m 0644 -D %{SOURCE1} %{buildroot}%{_datadir}/applications/KeeWeb.desktop
 #desktop-file-validate %{buildroot}%{_datadir}/applications/KeeWeb.desktop
 
 %files
-/opt/KeeWeb-%{version}/*
+/opt/KeeWeb/*
 %{_datadir}/applications/KeeWeb.desktop
 
 %changelog
-* Tue Aug 21 2019 Mikel Olasagasti <mikel@olasagsati.info> - 1.9.1-1
+* Wed Aug 21 2019 Mikel Olasagasti <mikel@olasagsati.info> - 1.9.1-2
+- Change install path to be version agnostic
+* Wed Aug 21 2019 Mikel Olasagasti <mikel@olasagsati.info> - 1.9.1-1
 - Version bump
 * Fri May 3 2019 Mikel Olasagasti <mikel@olasagsati.info> - 1.8.2-1
 - Version bump
