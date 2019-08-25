@@ -10,7 +10,6 @@ Version: 0.0.3
 %global godocs *.md
 
 %global common_description %{expand:
-gcping is a command line tools that reports median latency to Google Cloud regions.
 }
 
 Name:    gcping
@@ -25,10 +24,10 @@ Source0: %{gosource}
 %gopkg
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q -n gcping-%{version}
 
 %build
-%gobuild -o %{gobuilddir}/bin/%{name}
+%gobuild -o %{gobuilddir}/bin/gcping
 
 %install
 install -m 0755 -vd                     %{buildroot}%{_bindir}
@@ -37,8 +36,8 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %check
 
 %files
-%license %{golicenses}
-%doc %{godocs}
+%license LICENSE
+%doc README.md
 %{_bindir}/gcping
 
 %changelog
