@@ -13,7 +13,7 @@ Version: 0
 %global godocs *.md
 
 %global common_description %{expand:
-}
+A simple, secure and modern encryption tool with small explicit keys, no config options, and UNIX-style composability.}
 
 Name:    age
 Release: 0.0.%{shortcommit}%{?dist}
@@ -29,6 +29,8 @@ BuildRequires:  golang(golang.org/x/crypto/poly1305)
 BuildRequires:  golang(golang.org/x/crypto/scrypt)
 BuildRequires:  golang(golang.org/x/crypto/ssh)
 BuildRequires:  golang(golang.org/x/crypto/ssh/terminal)
+
+Requires:  golang(golang.org/x/crypto/curve25519)
 
 %description
 %{common_description}
