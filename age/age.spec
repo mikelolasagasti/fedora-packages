@@ -1,12 +1,11 @@
 %global goipath github.com/FiloSottile/age
-
+%global goforgeurl https://github.com/FiloSottile/age
 %global commit 7ef2aa8a4ed365916d75b8d92ca15323b6d7de0d
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %gometa
 
 Version: 0
-
 
 %global _docdir_fmt     %{name}
 
@@ -22,8 +21,6 @@ Summary: A simple, secure and modern encryption tool with small explicit keys, n
 License: New BSD
 URL:     %{gourl}
 Source0: %{gosource}
-%description
-%{common_description}
 
 BuildRequires:  golang(golang.org/x/crypto/chacha20poly1305)
 BuildRequires:  golang(golang.org/x/crypto/curve25519)
@@ -33,8 +30,8 @@ BuildRequires:  golang(golang.org/x/crypto/scrypt)
 BuildRequires:  golang(golang.org/x/crypto/ssh)
 BuildRequires:  golang(golang.org/x/crypto/ssh/terminal)
 
-%generate_buildrequires
-%go_generate_buildrequires
+%description
+%{common_description}
 
 %gopkg
 
@@ -42,12 +39,11 @@ BuildRequires:  golang(golang.org/x/crypto/ssh/terminal)
 %goprep
 
 for cmd in cmd/* ; do
-  %gobuild -o %{gobuilddir}/bin/$(basename $cmd) %{goipath}/$cmd
+  %gobuild -o %{gobuilddir}/cmd/$(basename $cmd) %{goipath}/$cmd
 done
 
-%godevelinstall
+%install
 %gopkginstall
-
 
 %gocheck
 
