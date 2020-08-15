@@ -9,6 +9,7 @@ Source0:	https://github.com/johang/btfs/archive/v%{version}.tar.gz#/btfs-%{versi
 
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	gcc-c++
 BuildRequires:	pkgconfig(fuse)
 BuildRequires:	pkgconfig(libtorrent-rasterbar)
 BuildRequires:	pkgconfig(libcurl)
@@ -24,7 +25,7 @@ changes.
 %autosetup -n btfs-%{version}
 
 %build
-autoreconf -fiv
+autoreconf -i
 %configure
 make %{?_smp_mflags}
 
