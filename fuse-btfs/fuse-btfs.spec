@@ -24,7 +24,7 @@ changes.
 %autosetup -n btfs-%{version}
 
 %build
-autoreconf -i
+autoreconf -fiv
 %configure
 make %{?_smp_mflags}
 
