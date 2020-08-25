@@ -19,6 +19,8 @@ BuildRequires: gtk3-devel >= %{gtk3_version}
 BuildRequires: dconf-devel
 BuildRequires: gsettings-desktop-schemas-devel
 Requires:       python3-gobject
+Requires:	python3-crypto
+Requires:	python3-pwquality
 Requires: dbus
 Requires: glib2%{?_isa} >= %{glib2_version}
 Requires: gsettings-desktop-schemas
