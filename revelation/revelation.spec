@@ -1,5 +1,7 @@
 %global debug_package %{nil}
 %define gettext_package revelation
+%define glib2_version 2.52.0
+%define gtk3_version 3.14
 
 Name:           revelation
 Version:        0.5.0
