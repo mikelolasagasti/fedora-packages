@@ -9,9 +9,14 @@ License:        GPL-2.0
 URL:            https://revelation.olasagasti.info
 Source0:        https://github.com/mikelolasagasti/revelation/releases/download/revelation-0.5.0/revelation-0.5.0.tar.xz
 
+BuildRequires: autoconf automake libtool
 BuildRequires:  python3-gobject-devel
 BuildRequires:  gettext
 Requires:       python3-gobject
+Requires: dbus
+Requires: glib2%{?_isa} >= %{glib2_version}
+Requires: gsettings-desktop-schemas
+Requires: gtk3%{?_isa} >= %{gtk3_version}
 
 %description
 Revelation is a password manager for the GNOME desktop, released under the GNU
