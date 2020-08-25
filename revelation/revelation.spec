@@ -12,6 +12,8 @@ URL:            https://revelation.olasagasti.info
 Source0:        https://github.com/mikelolasagasti/%{name}/releases/download/%{name}-%{version}/%{name}-%{version}.tar.xz
 
 BuildRequires: autoconf automake libtool
+BuildRequires:  python3-devel
+BuildRequires:  python3-setuptools
 BuildRequires:  python3-gobject-devel
 BuildRequires:  gettext
 BuildRequires: glib2-devel >= %{glib2_version}
@@ -51,10 +53,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/*
 %{_datadir}/appdata/*.appdata.xml
 %{_datadir}/applications/*.desktop
-%{_datadir}/revelation/
+%{_datadir}/%{name}/
 %{_datadir}/icons/hicolor/??x??/mimetypes/gnome-mime-application-x-revelation.png
 %{_datadir}/icons/hicolor/*/apps/%{name}*.*
-%{python3_sitearch}/revelation/
+%{python3_sitearch}/%{name}/
 %{_datadir}/mime/packages/*
 %{_datadir}/glib-2.0/schemas/org.revelation.gschema.xml
 
