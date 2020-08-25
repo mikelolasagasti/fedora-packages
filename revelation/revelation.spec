@@ -14,6 +14,10 @@ Source0:        https://github.com/mikelolasagasti/revelation/releases/download/
 BuildRequires: autoconf automake libtool
 BuildRequires:  python3-gobject-devel
 BuildRequires:  gettext
+BuildRequires: glib2-devel >= %{glib2_version}
+BuildRequires: gtk3-devel >= %{gtk3_version}
+BuildRequires: dconf-devel
+BuildRequires: gsettings-desktop-schemas-devel
 Requires:       python3-gobject
 Requires: dbus
 Requires: glib2%{?_isa} >= %{glib2_version}
