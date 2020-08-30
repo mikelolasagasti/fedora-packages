@@ -4,7 +4,7 @@
 %define gtk3_version 3.14
 
 Name:           revelation
-Version:        0.5.0
+Version:        0.5.1
 Release:        1%{?dist}
 Summary:        Revelation is a password manager for the GNOME desktop.
 License:        GPL-2.0
@@ -61,6 +61,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/glib-2.0/schemas/org.revelation.gschema.xml
 
 %changelog
+* Sun Aug 30 2020 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 0.5.1-1
+- Version bump
+
 * Fri Jul 26 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.4.14-22
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
  
