@@ -1,11 +1,11 @@
 Summary:	FUSE filesystem Bittorrent
 Name:		fuse-btfs
 Version:	2.22
-Release:	1%{?dist}
+Release:	2%{?dist}
 
 License:	GPLv3
 URL:		https://github.com/johang/btfs
-Source0:	https://github.com/johang/btfs/archive/v%{version}.tar.gz#/btfs-%{version}.tar.gz
+Source0:	https://github.com/johang/btfs/archive/v%{version}/btfs-%{version}.tar.gz
 
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -27,7 +27,7 @@ changes.
 %build
 autoreconf -i
 %configure
-make %{?_smp_mflags}
+%make_build
 
 %install
 %{make_install}
@@ -41,5 +41,8 @@ make %{?_smp_mflags}
 
 
 %changelog
-* Sat Aug 15 2020 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 2.22
+* Thu Sep 3 2020 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 2.22-2
+- Spec changes based on review
+
+* Sat Aug 15 2020 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 2.22-1
 - Initial version of the package
