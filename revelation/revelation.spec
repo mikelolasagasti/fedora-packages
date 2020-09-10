@@ -5,30 +5,32 @@
 
 Name:           revelation
 Version:        0.5.2
-Release:        1%{?dist}
-Summary:        Revelation is a password manager for the GNOME desktop.
-License:        GPL-2.0
+Release:        2%{?dist}
+Summary:        Revelation is a password manager for the GNOME desktop
+License:        GPLv2
 URL:            https://revelation.olasagasti.info
 Source0:        https://github.com/mikelolasagasti/%{name}/releases/download/%{name}-%{version}/%{name}-%{version}.tar.xz
 
-BuildRequires: autoconf automake libtool
+BuildRequires:  autoconf automake libtool
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-gobject-devel
 BuildRequires:  gettext
-BuildRequires: glib2-devel >= %{glib2_version}
-BuildRequires: gtk3-devel >= %{gtk3_version}
-BuildRequires: dconf-devel
-BuildRequires: gsettings-desktop-schemas-devel
+BuildRequires:  glib2-devel >= %{glib2_version}
+BuildRequires:  gtk3-devel >= %{gtk3_version}
+BuildRequires:  dconf-devel
+BuildRequires:  gsettings-desktop-schemas-devel
 BuildRequires:  python3-crypto
 BuildRequires:  python3-pwquality
+BuildRequires:  desktop-file-utils
+BuildRequires:  libappstream-glib
 Requires:       python3-gobject
 Requires:       python3-crypto
 Requires:       python3-pwquality
-Requires: dbus
-Requires: glib2%{?_isa} >= %{glib2_version}
-Requires: gsettings-desktop-schemas
-Requires: gtk3%{?_isa} >= %{gtk3_version}
+Requires:       dbus
+Requires:       glib2%{?_isa} >= %{glib2_version}
+Requires:       gsettings-desktop-schemas
+Requires:       gtk3%{?_isa} >= %{gtk3_version}
 
 %description
 Revelation is a password manager for the GNOME desktop, released under the GNU
@@ -43,9 +45,12 @@ place, and gives you access to it through a user-friendly graphical interface.
 %make_build
 
 %install
-rm -rf $RPM_BUILD_ROOT
 %make_install
 %find_lang %{gettext_package}
+
+%check
+appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/revelation.appdata.xml
+desktop-file-validate %{buildroot}%{_datadir}/applications/revelation.desktop
 
 %files -f %{name}.lang
 %license COPYING
@@ -61,6 +66,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/glib-2.0/schemas/org.revelation.gschema.xml
 
 %changelog
+* Thu Sep 10 2020 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 0.5.2-2
+- Changes from review #bz1877702
+- Add builddeps on desktop-file-utils and libappstream-glib
+- Add check section for desktop and appdata
+
 * Fri Sep 04 2020 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 0.5.2-1
 - Version bump
 
