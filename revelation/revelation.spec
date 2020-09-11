@@ -1,21 +1,26 @@
-%global debug_package %{nil}
-%define gettext_package revelation
-%define glib2_version 2.52.0
-%define gtk3_version 3.14
+%global gettext_package revelation
+%global glib2_version 2.52.0
+%global gtk3_version 3.14
 
 Name:           revelation
 Version:        0.5.2
-Release:        2%{?dist}
-Summary:        Revelation is a password manager for the GNOME desktop
-License:        GPLv2
+Release:        3%{?dist}
+Summary:        A password manager for the GNOME desktop
+# The entire source code is GPLv2 except src/lib/PBKDF2.py which is MIT
+License:        GPLv2 and MIT
 URL:            https://revelation.olasagasti.info
 Source0:        https://github.com/mikelolasagasti/%{name}/releases/download/%{name}-%{version}/%{name}-%{version}.tar.xz
+# Install python files to pythondir instead of pyexecdir
+Patch0:         0001-Install-python-files-to-pythondir-instead-of-pyexecd.patch
+Patch1:         0002-Remove-unneeded-shebang.patch
+
+BuildArch:      noarch
 
 BuildRequires:  autoconf automake libtool
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-gobject-devel
-BuildRequires:  gettext
+BuildRequires:  gettext-devel
 BuildRequires:  glib2-devel >= %{glib2_version}
 BuildRequires:  gtk3-devel >= %{gtk3_version}
 BuildRequires:  dconf-devel
@@ -31,6 +36,7 @@ Requires:       dbus
 Requires:       glib2%{?_isa} >= %{glib2_version}
 Requires:       gsettings-desktop-schemas
 Requires:       gtk3%{?_isa} >= %{gtk3_version}
+Requires:       hicolor-icon-theme
 
 %description
 Revelation is a password manager for the GNOME desktop, released under the GNU
@@ -38,9 +44,10 @@ GPL license. It stores all your accounts and passwords in a single, secure
 place, and gives you access to it through a user-friendly graphical interface. 
 
 %prep
-%autosetup
+%autosetup -p1
 
 %build
+autoreconf -fiv
 %configure --disable-desktop-update --disable-mime-update
 %make_build
 
@@ -56,16 +63,19 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/revelation.desktop
 %license COPYING
 %doc AUTHORS README TODO
 %{_bindir}/*
-%{_datadir}/metainfo/*.appdata.xml
+%{_metainfodir}/*.appdata.xml
 %{_datadir}/applications/*.desktop
 %{_datadir}/%{name}/
 %{_datadir}/icons/hicolor/??x??/mimetypes/gnome-mime-application-x-revelation.png
 %{_datadir}/icons/hicolor/*/apps/%{name}*.*
-%{python3_sitearch}/%{name}/
+%{python3_sitelib}/%{name}/
 %{_datadir}/mime/packages/*
 %{_datadir}/glib-2.0/schemas/org.revelation.gschema.xml
 
 %changelog
+* Fri Sep 11 2020 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 0.5.2-3
+- Changes from review #bz1877702
+
 * Thu Sep 10 2020 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 0.5.2-2
 - Changes from review #bz1877702
 - Add builddeps on desktop-file-utils and libappstream-glib
