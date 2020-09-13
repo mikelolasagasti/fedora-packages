@@ -3,16 +3,13 @@
 %global gtk3_version 3.14
 
 Name:           revelation
-Version:        0.5.2
-Release:        3%{?dist}
+Version:        0.5.3
+Release:        1%{?dist}
 Summary:        A password manager for the GNOME desktop
 # The entire source code is GPLv2 except src/lib/PBKDF2.py which is MIT
 License:        GPLv2 and MIT
 URL:            https://revelation.olasagasti.info
 Source0:        https://github.com/mikelolasagasti/%{name}/releases/download/%{name}-%{version}/%{name}-%{version}.tar.xz
-# Install python files to pythondir instead of pyexecdir
-Patch0:         0001-Install-python-files-to-pythondir-instead-of-pyexecd.patch
-Patch1:         0002-Remove-unneeded-shebang.patch
 
 BuildArch:      noarch
 
@@ -25,12 +22,12 @@ BuildRequires:  glib2-devel >= %{glib2_version}
 BuildRequires:  gtk3-devel >= %{gtk3_version}
 BuildRequires:  dconf-devel
 BuildRequires:  gsettings-desktop-schemas-devel
-BuildRequires:  python3-crypto
+BuildRequires:  python3-pycryptodomex
 BuildRequires:  python3-pwquality
 BuildRequires:  desktop-file-utils
 BuildRequires:  libappstream-glib
 Requires:       python3-gobject
-Requires:       python3-crypto
+Requires:       python3-pycryptodomex
 Requires:       python3-pwquality
 Requires:       dbus
 Requires:       glib2%{?_isa} >= %{glib2_version}
@@ -44,7 +41,7 @@ GPL license. It stores all your accounts and passwords in a single, secure
 place, and gives you access to it through a user-friendly graphical interface. 
 
 %prep
-%autosetup -p1
+%autosetup
 
 %build
 autoreconf -fiv
@@ -56,8 +53,8 @@ autoreconf -fiv
 %find_lang %{gettext_package}
 
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/revelation.appdata.xml
-desktop-file-validate %{buildroot}%{_datadir}/applications/revelation.desktop
+appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/info.olasagasti.revelation.appdata.xml
+desktop-file-validate %{buildroot}%{_datadir}/applications/info.olasagasti.revelation.desktop
 
 %files -f %{name}.lang
 %license COPYING
@@ -67,12 +64,16 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/revelation.desktop
 %{_datadir}/applications/*.desktop
 %{_datadir}/%{name}/
 %{_datadir}/icons/hicolor/??x??/mimetypes/gnome-mime-application-x-revelation.png
-%{_datadir}/icons/hicolor/*/apps/%{name}*.*
+%{_datadir}/icons/hicolor/*/apps/info.olasagasti.%{name}*.*
 %{python3_sitelib}/%{name}/
 %{_datadir}/mime/packages/*
 %{_datadir}/glib-2.0/schemas/org.revelation.gschema.xml
 
 %changelog
+* Sun Sep 13 2020 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 0.5.3-1
+- Version bump
+- Changed dep from python3-crypto to python3-cryptodomex
+
 * Fri Sep 11 2020 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 0.5.2-3
 - Changes from review #bz1877702
 
