@@ -1,13 +1,12 @@
 %global gettext_package revelation
 %global glib2_version 2.52.0
-%global gtk3_version 3.14
+%global gtk3_version 3.22
 
 Name:           revelation
 Version:        0.5.3
-Release:        1%{?dist}
+Release:        3%{?dist}
 Summary:        A password manager for the GNOME desktop
-# The entire source code is GPLv2 except src/lib/PBKDF2.py which is MIT
-License:        GPLv2 and MIT
+License:        GPLv2
 URL:            https://revelation.olasagasti.info
 Source0:        https://github.com/mikelolasagasti/%{name}/releases/download/%{name}-%{version}/%{name}-%{version}.tar.xz
 
@@ -25,7 +24,11 @@ BuildRequires:  gsettings-desktop-schemas-devel
 BuildRequires:  python3-pycryptodomex
 BuildRequires:  python3-pwquality
 BuildRequires:  desktop-file-utils
+%if %{defined suse_version}
+BuildRequires:  appstream-glib
+%else
 BuildRequires:  libappstream-glib
+%endif
 Requires:       python3-gobject
 Requires:       python3-pycryptodomex
 Requires:       python3-pwquality
@@ -60,7 +63,11 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/info.olasagasti.revel
 %license COPYING
 %doc AUTHORS README TODO
 %{_bindir}/*
+%if %{defined suse_version}
+%{_datadir}/metainfo/*.appdata.xml
+%else
 %{_metainfodir}/*.appdata.xml
+%endif
 %{_datadir}/applications/*.desktop
 %{_datadir}/%{name}/
 %{_datadir}/icons/hicolor/??x??/mimetypes/gnome-mime-application-x-revelation.png
@@ -70,6 +77,14 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/info.olasagasti.revel
 %{_datadir}/glib-2.0/schemas/org.revelation.gschema.xml
 
 %changelog
+* Fri Sep 25 2020 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 0.5.3-3
+- Bump dep to GTK3.22
+- Remove MIT licensed PBKDFv2.py
+- Add specific requirements for OpenSUSE
+
+* Sun Sep 13 2020 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 0.5.3-2
+- MIT source is not used anymore, changing back to GPLv2 only
+
 * Sun Sep 13 2020 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 0.5.3-1
 - Version bump
 - Changed dep from python3-crypto to python3-cryptodomex
