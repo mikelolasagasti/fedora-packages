@@ -4,15 +4,16 @@
 
 Name:           revelation
 Version:        0.5.4
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        A password manager for the GNOME desktop
 License:        GPLv2
 URL:            https://revelation.olasagasti.info
 Source0:        https://github.com/mikelolasagasti/%{name}/releases/download/%{name}-%{version}/%{name}-%{version}.tar.xz
-
+# Fix mime icon path in Meson
+Patch0:         0001-Change-mime-icon-path.patch
 BuildArch:      noarch
 
-BuildRequires:  autoconf automake libtool
+BuildRequires:  meson
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-gobject-devel
@@ -44,15 +45,15 @@ GPL license. It stores all your accounts and passwords in a single, secure
 place, and gives you access to it through a user-friendly graphical interface. 
 
 %prep
-%autosetup
+%autosetup -p1
 
 %build
-autoreconf -fiv
-%configure --disable-desktop-update --disable-mime-update
-%make_build
+%meson
+%define __ninja_common_opts -v
+%meson_build
 
 %install
-%make_install
+%meson_install
 %find_lang %{gettext_package}
 
 %check
@@ -77,6 +78,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/info.olasagasti.revel
 %{_datadir}/glib-2.0/schemas/info.olasagasti.revelation.gschema.xml
 
 %changelog
+* Sun Oct 4 2020 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 0.5.4-4
+- Change from autotools to Meson
+
 * Sun Oct 4 2020 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 0.5.4-3
 - Fix docs
 
