@@ -4,7 +4,7 @@
 
 Name:           revelation
 Version:        0.5.4
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A password manager for the GNOME desktop
 License:        GPLv2
 URL:            https://revelation.olasagasti.info
@@ -74,9 +74,12 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/info.olasagasti.revel
 %{_datadir}/icons/hicolor/*/apps/info.olasagasti.%{name}*.*
 %{python3_sitelib}/%{name}/
 %{_datadir}/mime/packages/*
-%{_datadir}/glib-2.0/schemas/org.revelation.gschema.xml
+%{_datadir}/glib-2.0/schemas/info.olasagasti.revelation.gschema.xml
 
 %changelog
+* Sun Oct 4 2020 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 0.5.4-2
+- Fix schema name
+
 * Sun Oct 4 2020 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 0.5.4-1
 - Version bump
 
