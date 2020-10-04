@@ -3,8 +3,8 @@
 %global gtk3_version 3.22
 
 Name:           revelation
-Version:        0.5.3
-Release:        3%{?dist}
+Version:        0.5.4
+Release:        1%{?dist}
 Summary:        A password manager for the GNOME desktop
 License:        GPLv2
 URL:            https://revelation.olasagasti.info
@@ -77,6 +77,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/info.olasagasti.revel
 %{_datadir}/glib-2.0/schemas/org.revelation.gschema.xml
 
 %changelog
+* Sun Oct 4 2020 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 0.5.4-1
+- Version bump
+
 * Fri Sep 25 2020 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 0.5.3-3
 - Bump dep to GTK3.22
 - Remove MIT licensed PBKDFv2.py
